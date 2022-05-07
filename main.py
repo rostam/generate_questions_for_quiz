@@ -4,7 +4,7 @@ words = []
 with open("persian-wikipedia.csv") as f:
     reader = csv.reader(f, delimiter='\t')
     for row in reader:
-        if int(row[1]) > 4000:
+        if int(row[1]) > 2000:
             words.append(row[0])
 
 
