@@ -1,4 +1,4 @@
-import csv, random, json
+import csv, random, json, re
 from itertools import permutations
 
 words = []
@@ -14,7 +14,7 @@ with open("dict.csv") as f:
         dict_fa_en[row[0]] = row[1]
 
 with open("persian-wikipedia.csv") as f:
-    reader = csv.reader(f, delimiter='\t')
+    reader = csv.reader(f, delimiter=',')
     for row in reader:
         if int(row[1]) > 2000:
             words.append(row[0])
@@ -66,7 +66,8 @@ with open("prepared_data.csv", "w") as f:
                     "question": dict_en_fa[w],
                     "choices": choices,
                     "answer": answer,
-                    "type": "translate_fa_en"
+                    "type": "translate_fa_en",
+                    "intent": ""
                 })
 
         for w in words_english:
@@ -90,7 +91,8 @@ with open("prepared_data.csv", "w") as f:
                     "question": dict_fa_en[w],
                     "choices": choices,
                     "answer": answer,
-                    "type": "translate_en_fa"
+                    "type": "translate_en_fa",
+                    "intent": ""
                 })
 
         # random.shuffle(data)
@@ -98,6 +100,7 @@ with open("prepared_data.csv", "w") as f:
 
         cnt_g = 0
         for a in arr_w:
+            ind = [i, j, k] = random.sample(range(0, len(words) - 1), 3)
             cnt = 0
             answer = 0
             choices = []
@@ -106,18 +109,21 @@ with open("prepared_data.csv", "w") as f:
                     choices.append(arr_ant_w[cnt_g])
                     answer = cnt
                 else:
+                    # print(ind)
                     choices.append(words[ind[i]])
                 cnt = cnt + 1
             data.append({
                 "question": a,
                 "choices": choices,
                 "answer": answer,
-                "type": "antonym"
+                "type": "antonym",
+                "intent": ""
             })
             cnt_g = cnt_g + 1
 
         cnt_g = 0
         for a in arr_ant_w:
+            ind = [i, j, k] = random.sample(range(0, len(words) - 1), 3)
             cnt = 0
             answer = 0
             choices = []
@@ -132,10 +138,48 @@ with open("prepared_data.csv", "w") as f:
                 "question": a,
                 "choices": choices,
                 "answer": answer,
-                "type": "antonym"
+                "type": "antonym",
+                "intent": ""
             })
             cnt_g = cnt_g + 1
+        # data = []
+        with open("amazon_fa.csv", "r") as f:
+            reader = csv.reader(f)
+            for r in reader:
+                ind = [i, j, k] = random.sample(range(0, len(words) - 1), 3)
+                cnt = 0
+                answer = 0
+                choices = []
+                cnt_g = 0
 
+                sentence_annot = r[2]
+                # sentence = re.sub("\[[^]]*\]", lambda x: x.group(0).replace(',', ''), Variable)
+                # sentence = re.sub(r"\[[^]]*\]", "-", sentence)
+                sentence_annot_found = re.findall("\[[^]]*\]", sentence_annot)
+                res = []
+                for entity in sentence_annot_found:
+                    res.append(entity[entity.index(':') + 1:-1].strip())
+                # print(res)
+                # sentence = re.sub("\[[^]]*\]", lambda x: x.group(0), sentence)
+                # print(sentence_annot
+                if len(res) > 0:
+                    for i in perm[random.randint(0, len(perm) - 1)]:
+                        if i == 3:
+                            choices.append(res[0])
+                            answer = cnt
+                        else:
+                            choices.append(words[ind[i]])
+                        cnt = cnt + 1
+                    # data.append({
+                    #     "question": r[1].replace(res[0], "------"),
+                    #     "choices": choices,
+                    #     "answer": res[0],
+                    #     "type": "sentence",
+                    #     "intent": r[0][r[0].index('_') + 1:]
+                    # })
+                    if len(data) == 501:
+                        break
+                    cnt_g = cnt_g + 1
 
 
         # perm = list(permutations(range(0,len(data))))[random.randint(0,len(data)-1)]
@@ -144,4 +188,5 @@ with open("prepared_data.csv", "w") as f:
         #     perm_data.append(data[p])
 
         random.shuffle(data)
+        data = random.sample(data, 2000)
         json.dump(data, f2, indent=2, ensure_ascii=False)
