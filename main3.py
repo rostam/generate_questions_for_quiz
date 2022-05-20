@@ -183,7 +183,7 @@ with open("words_questions.json", "w") as f2:
                 data.append({
                     "question": r[1].replace(res[0], "------"),
                     "choices": choices,
-                    "answer": res[0],
+                    "answer": answer,
                     "type": "sentence",
                     "intent": r[0][r[0].index('_') + 1:],
                     "extra": "Fill in the blank"
@@ -215,16 +215,19 @@ with open("words_questions.json", "w") as f2:
         for capital in capitals:
             choices = []
             ind = [i, j, k] = random.sample(range(0, len(countries) - 1), 3)
+            cnt = 0 
             for i in perm[random.randint(0, len(perm) - 1)]:
                 if i == 3:
                     choices.append(capital_country[capital])
+                    answer = cnt
                 else:
                     choices.append(countries[ind[i]])
+                cnt = cnt + 1
 
             data.append({
                 "question": capital,
                 "choices": choices,
-                "answer": capital_country[capital],
+                "answer": answer,
                 "type": "sentence",
                 "intent": "",
                 "extra": "The country with the following capital:"
@@ -235,16 +238,19 @@ with open("words_questions.json", "w") as f2:
         for country in countries:
             choices = []
             ind = [i, j, k] = random.sample(range(0, len(capitals) - 1), 3)
+            cnt = 0
             for i in perm[random.randint(0, len(perm) - 1)]:
                 if i == 3:
                     choices.append(country_capital[country])
+                    answer = cnt
                 else:
                     choices.append(capitals[ind[i]])
+                cnt = cnt + 1
 
             data.append({
                 "question": country,
                 "choices": choices,
-                "answer": country_capital[country],
+                "answer": answer,
                 "type": "capital",
                 "intent": "",
                 "extra": "The capital of:"
