@@ -49,7 +49,7 @@ def process_amazon_files(input, output, words_input, index):
                     "answer": answer,
                     "type": "sentence",
                     "intent": r[0][r[0].index('_') + 1:],
-                    "extra": "Fill in the blank"
+                    "extra": "Fill in the blank:"
                 })
                 if len(data) == 501:
                     break
@@ -60,3 +60,6 @@ def process_amazon_files(input, output, words_input, index):
 
 process_amazon_files('Spanish/es-ES.jsonl', 'Spanish/CommonSentences.json', 'Spanish/common_words_spanish.csv', 1)
 process_amazon_files('Korean/ko-KR.jsonl', 'Korean/CommonSentences.json', 'Korean/common_words_korean.csv', 1)
+process_amazon_files('German/de-DE.jsonl', 'German/CommonSentences.json', 'German/common_words_german.csv', 1)
+process_amazon_files('Persian/fa-IR.jsonl', 'Persian/CommonSentences.json', 'Persian/common_words_persian.csv', 0)
+

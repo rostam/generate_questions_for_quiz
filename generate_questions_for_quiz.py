@@ -72,3 +72,6 @@ generate_questions_for_quiz('Korean/common_words_korean.csv', 'Korean/CommonWord
 
 generate_questions_for_quiz('Spanish/common_words_spanish.csv', 'Spanish/CommonWords.json', 'translation',
                             'translation','The translation of', 'The translation of')
+
+generate_questions_for_quiz('German/common_words_german.csv', 'German/CommonWords.json', 'translation',
+                            'translation','The translation of', 'The translation of')

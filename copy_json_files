@@ -1,4 +1,5 @@
-cp Spanish/*.json ~/kara/goftan.github.io/public/NewQuiz/Spanish
-cp Persian/*.json ~/kara/goftan.github.io/public/NewQuiz/Persian
-cp Korean/*.json ~/kara/goftan.github.io/public/NewQuiz/Korean
+cp Spanish/*.json ~/kara/goftan.github.io/quiz/Spanish
+cp Persian/*.json ~/kara/goftan.github.io/quiz/Persian
+cp Korean/*.json ~/kara/goftan.github.io/quiz/Korean
+cp German/*.json ~/kara/goftan.github.io/quiz/German
 
