@@ -2,4 +2,7 @@ cp Spanish/*.json ~/kara/goftan.github.io/quiz/Spanish
 cp Persian/*.json ~/kara/goftan.github.io/quiz/Persian
 cp Korean/*.json ~/kara/goftan.github.io/quiz/Korean
 cp German/*.json ~/kara/goftan.github.io/quiz/German
+cp Turkish/*.json ~/kara/goftan.github.io/quiz/Turkish
+cp Arabic/*.json ~/kara/goftan.github.io/quiz/Arabic
+cp English/*.json ~/kara/goftan.github.io/quiz/English
 

@@ -62,4 +62,6 @@ process_amazon_files('Spanish/es-ES.jsonl', 'Spanish/CommonSentences.json', 'Spa
 process_amazon_files('Korean/ko-KR.jsonl', 'Korean/CommonSentences.json', 'Korean/common_words_korean.csv', 1)
 process_amazon_files('German/de-DE.jsonl', 'German/CommonSentences.json', 'German/common_words_german.csv', 1)
 process_amazon_files('Persian/fa-IR.jsonl', 'Persian/CommonSentences.json', 'Persian/common_words_persian.csv', 0)
-
+process_amazon_files('Turkish/tr-TR.jsonl', 'Turkish/CommonSentences.json', 'Turkish/common_words_turkish.csv', 1)
+process_amazon_files('Arabic/ar-SA.jsonl', 'Arabic/CommonSentences.json', 'Arabic/common_words_arabic.csv', 1)
+process_amazon_files('English/en-US.jsonl', 'English/CommonSentences.json', 'English/common_words_english.csv', 1)
